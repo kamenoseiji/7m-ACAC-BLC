@@ -1,0 +1,232 @@
+\documentclass[pdftex,a4paper, oneside, openright, 10pt]{article}
+\usepackage{newlfont}
+\usepackage{colortbl}
+\usepackage{ucs}
+
+
+\definecolor{gray}{rgb}{0.8,0.85,0.85}
+
+\usepackage[utf8x]{inputenc}
+\PrerenderUnicode{Ã Ã¨Ã©Ã¬Ã²Ã¹â€“}
+\usepackage{vmargin}
+\usepackage{amssymb}
+\usepackage[english]{babel}
+\usepackage[breaklinks=true]{hyperref}
+\hypersetup{
+    %bookmarks=true,         % show bookmarks bar?
+    bookmarksopen=false,    % Open up the bookmark tree (Default: false).
+    unicode=false,          % non-Latin characters in Acrobat’s bookmarks
+    pdftoolbar=true,        % show Acrobat’s toolbar?
+    pdfmenubar=true,        % show Acrobat’s menu?
+    pdffitwindow=false,     % window fit to page when opened
+    pdfstartview={FitH},    % fits the width of the page to the window
+    pdfpagemode=UseThumbs,  % Thumbnails are visible
+    %pdftitle={},           % title
+    pdfauthor={Author},     % author
+    %pdfsubject={Audit},                % subject of the document
+    pdfcreator={Author},                % creator of the document
+    %pdfproducer={\acs{XXX}},           % producer of the document
+    %pdfkeywords={XXX, YYY}             % list of keywords
+    pdfnewwindow=true,                  % links in new window
+    colorlinks=true,                    % false: boxed links; true: colored links
+    linkcolor=black,                     % color of internal links
+    citecolor=green,                    % color of links to bibliography
+    filecolor=magenta,                  % color of file links
+    urlcolor=cyan                       % color of external links
+}
+
+%\usepackage{titlesec}
+\usepackage{minitoc}
+%\usepackage{titlesec}
+
+\usepackage{ae}
+\usepackage[T1]{fontenc}
+\usepackage[printonlyused]{acronym}
+\usepackage{graphicx}  % insert [draft] before {...} not to see imgs
+\graphicspath{{../images//}}
+\usepackage{subfigure}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{indentfirst}
+\usepackage{color}
+\usepackage{threeparttable}
+\usepackage{longtable}
+\usepackage{caption}
+\captionsetup{width=.90\textwidth, font={small}, labelfont=bf, format=hang, indention=-45pt}    % to customize the caption
+\usepackage{amsmath}
+% For analytical index
+\usepackage{makeidx}
+\makeindex
+\usepackage{setspace}
+%\usepackage{breakurl}
+\usepackage{lscape}
+
+\renewcommand{\rmdefault}{phv} % Arial
+\renewcommand{\sfdefault}{phv} % Arial
+
+\singlespacing
+
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
+
+
+%\fancyheadoffset[C]{50pt}
+\pagestyle{fancy}
+
+\fancyhead[R,RO]{
+\begin{tabular}{l}
+Doc \#:\dn\\
+Date: {\dt}\\
+Page: \thepage~of \pageref{LastPage}
+\end{tabular}
+$ $\\
+}%{\slshape \rightmark}
+
+\fancyhead[CO,C]{
+%\bfseries ALMA Project\\
+\hspace{-120pt}{\bf\Large \protect\parbox{.4\textwidth}{\textbf{\tit}}}
+$ $\\
+$ $\\
+}%{\slshape \leftmark}
+
+\fancyhead[LO,L]{
+%{\bf\Large \tit}
+\includegraphics[scale=0.4, angle=0]{almaLogo}
+%\fancyfoot[C]{}
+}%{\slshape \leftmark}
+\renewcommand{\headrulewidth}{1pt}
+\setlength{\headheight}{70pt}
+
+
+\begin{document}
+\DeclareGraphicsExtensions{.png, .eps, .jpeg, .giff, .pdf}
+
+% Variable Definition ----------------------------------------------------
+\input{../cover/cover.tex}
+\newcommand{\ve}{Version}                                        % Version
+\newcommand{\st}{Status}                                         % Status
+\newcommand{\gr}{\textsuperscript{$\circ$}}
+% to insert notes on the text
+\newcommand{\mar}[1]{\leavevmode\marginpar{\tiny\raggedright#1\par}}% right note
+\newcommand{\nota}[1]{%
+  \marginpar[{\raggedleft\small\sffamily #1\\}]{%
+    {\raggedright\footnotesize\sffamily #1\\}}}
+
+% Cover Page ----------------------------------------------------
+\thispagestyle{empty}
+\setlength{\voffset}{-70pt}
+\setlength{\oddsidemargin}{70pt}
+\vspace*{-3cm}
+\includegraphics[scale=0.45, angle=0]{ima-000.png}
+\hskip 1.0 cm
+\includegraphics[scale=0.35, angle=0]{ima-001.png}
+
+
+
+\begin{center}
+    \vskip 2 cm
+    {\Huge{\textbf{\tit}}}\\   %\newcommand{\tit}{\protect\parbox{.4\textwidth}{Single-Dish Continuum \\ Observations at ALMA}}
+
+    \vskip 2 cm
+\Large {\dn}\\
+%Version: {\ve}\footnote{Printed versions of this document are For Reference Only. The latest released electronic version is located in the \acs{ALMA} \ac{EDM} system accessible through the internet at: \href{http://edm.alma.cl}{http://edm.alma.cl}}
+%\\
+%Status: {\st}\\
+\vskip 2 cm
+{\dt}\\
+\vskip 2 cm
+
+
+
+\begin{table}[htbp]
+\centerline{
+\begin{tabular}{|p{5cm}|p{5cm}|p{5cm}|}
+  \hline
+  % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
+  \rowcolor{gray} {\bf Prepared By:}                    & {\bf Organization Role} & {\bf Date  and Signature}    \\\hline
+                                        &  &  \\
+                                        &  &  \\
+  \preparedBy                         \\
+                                        &  &  \\
+                                        &  &  \\\hline
+  \rowcolor{gray} {\bf Approved By:}                    & {\bf Organization Role} &{\bf  Date and Signature } \\\hline
+                                        &  &  \\
+                                        &  &  \\
+  \approvedBy                                  \\
+                                        &  &  \\
+                                        &  &  \\\hline
+  \rowcolor{gray} {\bf Authorized By:}                  & {\bf Organization Role} &{\bf  Date and Signature } \\\hline
+                                        &  &  \\
+                                        &  &  \\
+  \authorizedBy                                  \\
+                                        &  &  \\
+                                        &  &  \\\hline
+\end{tabular}}
+\end{table}
+\end{center}
+
+
+\setlength{\voffset}{-90pt}
+\setlength{\oddsidemargin}{90pt}
+\setlength{\textheight}{600pt}
+\clearpage
+
+
+\section*{Change Record}
+\thispagestyle{fancy}
+%\addcontentsline{toc}{chapter}{Change Record}
+\begin{table}[htbp]
+\centerline{
+\begin{tabular}{|c|c|c|c|l|}
+  \hline
+  % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
+ \rowcolor{gray} Version   &   Date  &  Affected Section(s)    &  Author &  Reason, Initiation, Remarks\\\hline
+  \changeRecord
+\hline
+\end{tabular}}
+
+\end{table}
+
+%\frenchspacing
+%\dominitoc
+
+%\thispagestyle{fancy}
+%\addcontentsline{toc}{chapter}{\contentsname}
+%\begingroup
+%\let\clearpage\relax
+\tableofcontents
+%\thispagestyle{fancy}
+%\endgroup
+
+
+\begingroup
+\let\clearpage\relax
+\listoffigures{}
+\thispagestyle{fancy}
+\endgroup
+
+
+%\addcontentsline{toc}{chapter}{\listfigurename}
+
+%\listoftables
+%\thispagestyle{fancy}
+
+\clearpage
+
+%\addcontentsline{toc}{chapter}{\listtablename}
+
+%\include{CHRE}  % Change Request insertion
+%\include{ACRO}  % Acronyms insertion
+%\include{VB}    % Verbs convention
+
+
+%---------------------------BODY START---------------------------------
+%\input{../body/body.tex}
+\input{../body/heading_section.tex}
+\input{../body/main_body.tex}
+\input{../body/closing_section.tex}
+
+
+
+%---------------------------BODY END---------------------------------
+\end{document}
