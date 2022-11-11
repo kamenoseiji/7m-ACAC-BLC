@@ -1,0 +1,546 @@
+lines(freq, SSAspec(2, -1, 50, freq))
+besselK(0,5/3)
+besselK(1,5/3)
+besselK(2,5/3)
+lines(freq, besselK(freq, 5/3))
+besselK(freq, 5/3)
+besselK(10, 5/3)
+besselK(1, 5/3)
+plot(seq(0.1, 10, b=0.1), besselK(seq(0.1, 10, b=0.1), 5/3)
+)
+plot(seq(0.1, 10, b=0.1), besselK(seq(0.1, 10, b=0.1), 5/3), log='xy')
+F <- function(x){#
+	x* integrate(besselK(x, 5/3), lower = x, upper = 100)#
+}
+F(1)
+K53 <- function(x){ return(besselK(x, 5/3)) }
+F <- function(x){#
+	x* integrate(K53(x), lower = x, upper = 100)#
+}
+F(1)
+K53(1)
+K53 <- function(x){ besselK(x, 5/3) }
+K53(1)
+F <- function(x){#
+	x* integrate(K53(x), lower = x, upper = 100)#
+}
+F(1)
+F <- function(x){#
+	return( x* integrate(K53(x), lower = x, upper = 100) )#
+}
+F(1)
+F <- function(x){#
+	K53 <- function(x){ besselK(x, 5/3) }#
+	return( x* integrate(K53(x), lower = x, upper = 100) )#
+}
+F(1)
+K53 <- function(x){ besselK(x, 5/3) }
+plot(seq(0.1, 10, b=0.1), K53(seq(0.1, 10, b=0.1)), log='xy')
+integrate(K53, lower=0.1, upper=100)
+F <- function(x){#
+	return( x* integrate(K53, lower = x, upper = 100) )#
+}
+F(1)
+F <- function(x){#
+	return( x* integrate(K53, lower = x, upper = 100)$value )#
+}
+F(1)
+plot(freq, F(freq))
+freq
+length(1)
+K53 <- function(x){ besselK(x, 5/3) }#
+F <- function(x){#
+	y <- numeric(length(x))#
+	for(index in 1:length(x)){#
+		y[index] <- x[index]* integrate(K53, lower = x, upper = 1000)$value#
+	}#
+	return( y )#
+}
+F(freq)
+F <- function(x){#
+	y <- numeric(length(x))#
+	for(index in 1:length(x)){#
+		y[index] <- x[index]* integrate(K53, lower = x[index], upper = 1000)$value#
+	}#
+	return( y )#
+}
+F(freq)
+plot(freq, F(freq))
+plot(freq, F(freq), log='xy')
+SynchrotronBreakSpec <- function(Sc, alpha, breakFreq, nu){#
+	return( Sc* nu^(alpha) * F(nu) / sqrt(nu) * (sqrt(nu) - sqrt(nu/breakFreq))^(-2* alpha - 1) )#
+}
+SynchrotronBreakSpec(10, -1.5, 100, freq)
+SynchrotronBreakSpec(100, -1.5, 100, freq)
+plot(freq, Score + Sjet, type='l', log='xy', xlim=c(50,500), ylim=c(0.15, 1.5), xlab='Frequency [GHz]', ylab='Flux Density [Jy]', main='NGC 1052 Continuum Spectrum')#
+points(ContDF, pch=20)#
+lines(freq, Score, type='l', col='blue') #
+lines(freq, Sjet, type='l', col='red')
+plot(freq, Score + Sjet, type='l', log='xy', xlim=c(50,500), ylim=c(0.15, 1.5), xlab='Frequency [GHz]', ylab='Flux Density [Jy]', main='NGC 1052 Continuum Spectrum')#
+points(ContDF, pch=20)#
+lines(freq, Score, type='l', col='blue') #
+lines(freq, SynchrotronBreakSpec(100e3, -1.5, 100, freq), type='l', col='green')
+SynchrotronBreakSpec(100e3, -1.5, 100, freq)
+dev.off()
+plot(freq, Score + Sjet, type='l', log='xy', xlim=c(50,500), ylim=c(0.15, 1.5), xlab='Frequency [GHz]', ylab='Flux Density [Jy]', main='NGC 1052 Continuum Spectrum')
+lines(freq, SynchrotronBreakSpec(100e3, -1.5, 100, freq), type='l')
+lines(freq, SynchrotronBreakSpec(100e5, -1.5, 100, freq), type='l')
+lines(freq, SynchrotronBreakSpec(100e7, -1.5, 100, freq), type='l')
+freq
+SynchrotronBreakSpec(100e7, -1.5, 100, freq
+)
+lines(freq, SynchrotronBreakSpec(100e15, -1, 100, freq), type='l')
+lines(freq, SynchrotronBreakSpec(100e15, -1, 200, freq), type='l')
+plot(freq, SynchrotronBreakSpec(100e15, -1, 200, freq), type='l', log='xy')
+F(100000)
+SynchrotronBreakSpec <- function(Sc, alpha, breakFreq, nu){#
+	return( Sc* nu^(alpha) * (10 - sqrt(nu/breakFreq))^(-2* alpha - 1) )#
+}
+SynchrotronBreakSpec(1, -1, 100, freq)
+plot(freq, SynchrotronBreakSpec(1, -1, 100, freq), type='l', log='xy')
+SynchrotronBreakSpec <- function(Sc, alpha, breakFreq, nu){#
+	return( Sc* nu^(alpha) * (1 - sqrt(nu/breakFreq))^(-2* alpha - 1) )#
+}
+plot(freq, SynchrotronBreakSpec(1, -1, 100, freq), type='l', log='xy')
+SynchrotronBreakSpec <- function(Sc, alpha, breakFreq, nu){#
+	return( Sc* nu^(alpha) * exp((1 - sqrt(nu/breakFreq))^(-2* alpha - 1)) )#
+}
+plot(freq, SynchrotronBreakSpec(1, -1, 100, freq), type='l', log='xy')
+SynchrotronBreakSpec <- function(Sc, alpha, breakFreq, nu){#
+	return( Sc* nu^(alpha) * (2 - sqrt(nu/breakFreq))^(-2* alpha - 1) )#
+}
+plot(freq, Score + Sjet, type='l', log='xy', xlim=c(50,500), ylim=c(0.15, 1.5), xlab='Frequency [GHz]', ylab='Flux Density [Jy]', main='NGC 1052 Continuum Spectrum')#
+points(ContDF, pch=20)#
+lines(freq, Score, type='l', col='blue') #
+lines(freq, Sjet, type='l', col='red')
+lines(freq, SynchrotronBreakSpec(1, -1, 100, freq), type='l', log='xy')
+lines(freq, SynchrotronBreakSpec(1, -1, 100, freq), type='l')
+SynchrotronBreakSpec(1, -1, 100, freq)
+SynchrotronBreakSpec(10, -1, 100, freq)
+lines(freq, SynchrotronBreakSpec(10, -1, 100, freq), type='l')
+lines(freq, SynchrotronBreakSpec(100, -1, 100, freq), type='l')
+lines(freq, SynchrotronBreakSpec(100, -1, 200, freq), type='l')
+lines(freq, SynchrotronBreakSpec(100, -1, 500, freq), type='l')
+lines(freq, SynchrotronBreakSpec(100, -0.5, 500, freq), type='l')
+lines(freq, SynchrotronBreakSpec(10, -0.5, 500, freq), type='l')
+lines(freq, SynchrotronBreakSpec(10, -0.5, 100, freq), type='l')
+lines(freq, SynchrotronBreakSpec(10, -0.5, 10, freq), type='l')
+SynchrotronBreakSpec(10, -0.5, 10, freq)
+SynchrotronBreakSpec <- function(Sc, alpha, breakFreq, nu){#
+	return( Sc* nu^(alpha) * (1- sqrt(nu/breakFreq))^(-2* alpha - 1) )#
+}
+SynchrotronBreakSpec(10, -0.5, 10, freq)
+SynchrotronBreakSpec(10, -1, 10, freq)
+SynchrotronBreakSpec(10, -1, 100, freq)
+SynchrotronBreakSpec(10, -1, 200, freq)
+lines(freq, SynchrotronBreakSpec(10, -1, 200, freq))
+plot(freq, SynchrotronBreakSpec(10, -1, 200, freq))
+plot(freq, SynchrotronBreakSpec(10, -1, 200, freq), log='xy')
+SynchrotronBreakSpec <- function(Sc, alpha, breakFreq, nu){#
+	return( Sc* nu^(alpha) / sqrt(nu) * (sqrt(nu) - sqrt(nu/breakFreq))^(-2* alpha - 1) )#
+}
+plot(freq, SynchrotronBreakSpec(10, -1, 200, freq), log='xy')
+plot(freq, SynchrotronBreakSpec(10, -1, 2, freq), log='xy')
+plot(freq, SynchrotronBreakSpec(10, -1, 1, freq), log='xy')
+plot(freq, SynchrotronBreakSpec(10, -1, 1.5, freq), log='xy')
+plot(freq, SynchrotronBreakSpec(10, -1, 1.1, freq), log='xy')
+plot(freq, (1 - sqrt(freq/100)) , log='xy')
+plot(freq, exp(1 - sqrt(freq/100)) , log='xy')
+plot(freq, exp(1 - freq/100) , log='xy')
+SynchrotronBreakSpec <- function(Sc, alpha, breakFreq, nu){#
+	return( Sc* nu^(alpha) * exp((1- (nu/breakFreq))^(-2* alpha - 1)))#
+}
+plot(freq, SynchrotronBreakSpec(10, -1.1, 100, freq), log='xy')
+plot(freq, SynchrotronBreakSpec(10, -1.1, 200, freq), log='xy')
+plot(freq, SynchrotronBreakSpec(10, -1, 200, freq), log='xy')
+plot(freq, SynchrotronBreakSpec(10, -1, 100, freq), log='xy')
+FreqPoints <- c( 88.8,  86.9,  86.9,  85.0,  97.0,  98.7,  98.6, 100.4, 130.1, 128.2, 128.3, 126.5, 138.3, 140.1, 139.9, 141.7, 354.1, 356.0, 357.9, 351.0, 343.2, 344.2, 341.8, 338.0, 231.7, 213.1)#
+FluxPoints <- c(1.190, 1.205, 1.205, 1.221, 1.125, 1.112, 1.114, 1.100, 0.875, 0.883, 0.883, 0.891, 0.843, 0.836, 0.837, 0.831, 0.443, 0.445, 0.446, 0.441, 0.443, 0.443, 0.443, 0.444, 0.491, 0.492)#
+ContDF <- data.frame(freq=FreqPoints, flux=FluxPoints)
+Score <- FFAspec(CoreParam[1], CoreParam[2], CoreParam[3], freq)#
+Sjet  <- FFAspec(JetParam[1], JetParam[2], JetParam[3], freq)#
+#
+plot(freq, Score + Sjet, type='l', log='xy', xlim=c(50,500), ylim=c(0.15, 1.5), xlab='Frequency [GHz]', ylab='Flux Density [Jy]', main='NGC 1052 Continuum Spectrum')#
+points(ContDF, pch=20)#
+lines(freq, Score, type='l', col='blue') #
+lines(freq, Sjet, type='l', col='red')
+Score <- FFAspec(CoreParam[1], CoreParam[2], CoreParam[3], freq)#
+Sjet  <- FFAspec(JetParam[1], JetParam[2], JetParam[3], freq)#
+#
+plot(freq, Score + Sjet, type='l', log='xy', xlim=c(50,500), ylim=c(0.15, 1.5), xlab='Frequency [GHz]', ylab='Flux Density [Jy]', main='NGC 1052 Continuum Spectrum')#
+points(ContDF, pch=20)#
+lines(freq, Score, type='l', col='blue') #
+lines(freq, SynchrotronBreakSpec(10, -1, 100, freq), type='l', col='red')
+Score <- FFAspec(CoreParam[1], CoreParam[2], CoreParam[3], freq)#
+Sjet  <- FFAspec(JetParam[1], JetParam[2], JetParam[3], freq)#
+#
+plot(freq, Score + Sjet, type='l', log='xy', xlim=c(50,500), ylim=c(0.15, 1.5), xlab='Frequency [GHz]', ylab='Flux Density [Jy]', main='NGC 1052 Continuum Spectrum')#
+points(ContDF, pch=20)#
+lines(freq, Score, type='l', col='blue') #
+lines(freq, SynchrotronBreakSpec(100, -1, 100, freq), type='l', col='red')
+Score <- FFAspec(CoreParam[1], CoreParam[2], CoreParam[3], freq)#
+Sjet  <- FFAspec(JetParam[1], JetParam[2], JetParam[3], freq)#
+#
+plot(freq, Score + Sjet, type='l', log='xy', xlim=c(50,500), ylim=c(0.15, 1.5), xlab='Frequency [GHz]', ylab='Flux Density [Jy]', main='NGC 1052 Continuum Spectrum')#
+points(ContDF, pch=20)#
+lines(freq, Score, type='l', col='blue') #
+lines(freq, SynchrotronBreakSpec(100, -0.5, 100, freq), type='l', col='red')
+Score <- FFAspec(CoreParam[1], CoreParam[2], CoreParam[3], freq)#
+Sjet  <- FFAspec(JetParam[1], JetParam[2], JetParam[3], freq)#
+#
+plot(freq, Score + Sjet, type='l', log='xy', xlim=c(50,500), ylim=c(0.15, 1.5), xlab='Frequency [GHz]', ylab='Flux Density [Jy]', main='NGC 1052 Continuum Spectrum')#
+points(ContDF, pch=20)#
+lines(freq, Score, type='l', col='blue') #
+lines(freq, SynchrotronBreakSpec(1, -0.5, 100, freq), type='l', col='red')
+Score <- FFAspec(CoreParam[1], CoreParam[2], CoreParam[3], freq)#
+Sjet  <- FFAspec(JetParam[1], JetParam[2], JetParam[3], freq)#
+#
+plot(freq, Score + Sjet, type='l', log='xy', xlim=c(50,500), ylim=c(0.15, 1.5), xlab='Frequency [GHz]', ylab='Flux Density [Jy]', main='NGC 1052 Continuum Spectrum')#
+points(ContDF, pch=20)#
+lines(freq, Score, type='l', col='blue') #
+lines(freq, SynchrotronBreakSpec(10, -0.5, 100, freq), type='l', col='red')
+Score <- FFAspec(CoreParam[1], CoreParam[2], CoreParam[3], freq)#
+Sjet  <- FFAspec(JetParam[1], JetParam[2], JetParam[3], freq)#
+#
+plot(freq, Score + Sjet, type='l', log='xy', xlim=c(50,500), ylim=c(0.15, 1.5), xlab='Frequency [GHz]', ylab='Flux Density [Jy]', main='NGC 1052 Continuum Spectrum')#
+points(ContDF, pch=20)#
+lines(freq, Score, type='l', col='blue') #
+lines(freq, SynchrotronBreakSpec(2, -0.5, 100, freq), type='l', col='red')
+Score <- FFAspec(CoreParam[1], CoreParam[2], CoreParam[3], freq)#
+Sjet  <- FFAspec(JetParam[1], JetParam[2], JetParam[3], freq)#
+#
+plot(freq, Score + Sjet, type='l', log='xy', xlim=c(50,500), ylim=c(0.15, 1.5), xlab='Frequency [GHz]', ylab='Flux Density [Jy]', main='NGC 1052 Continuum Spectrum')#
+points(ContDF, pch=20)#
+lines(freq, Score, type='l', col='blue') #
+lines(freq, SynchrotronBreakSpec(100, -1, 100, freq), type='l', col='red')
+Score <- FFAspec(CoreParam[1], CoreParam[2], CoreParam[3], freq)#
+Sjet  <- FFAspec(JetParam[1], JetParam[2], JetParam[3], freq)#
+#
+plot(freq, Score + Sjet, type='l', log='xy', xlim=c(50,500), ylim=c(0.15, 1.5), xlab='Frequency [GHz]', ylab='Flux Density [Jy]', main='NGC 1052 Continuum Spectrum')#
+points(ContDF, pch=20)#
+lines(freq, Score, type='l', col='blue') #
+lines(freq, SynchrotronBreakSpec(100, -1, 200, freq), type='l', col='red')
+Score <- FFAspec(CoreParam[1], CoreParam[2], CoreParam[3], freq)#
+Sjet  <- FFAspec(JetParam[1], JetParam[2], JetParam[3], freq)#
+#
+plot(freq, Score + Sjet, type='l', log='xy', xlim=c(50,500), ylim=c(0.15, 1.5), xlab='Frequency [GHz]', ylab='Flux Density [Jy]', main='NGC 1052 Continuum Spectrum')#
+points(ContDF, pch=20)#
+lines(freq, Score, type='l', col='blue') #
+lines(freq, SynchrotronBreakSpec(100, -0.99, 200, freq), type='l', col='red')
+Score <- FFAspec(CoreParam[1], CoreParam[2], CoreParam[3], freq)#
+Sjet  <- FFAspec(JetParam[1], JetParam[2], JetParam[3], freq)#
+#
+plot(freq, Score + Sjet, type='l', log='xy', xlim=c(50,500), ylim=c(0.15, 1.5), xlab='Frequency [GHz]', ylab='Flux Density [Jy]', main='NGC 1052 Continuum Spectrum')#
+points(ContDF, pch=20)#
+lines(freq, Score, type='l', col='blue') #
+lines(freq, SynchrotronBreakSpec(100, -1.1, 200, freq), type='l', col='red')
+SynchrotronBreakSpec <- function(Sc, alpha, breakFreq, nu){#
+	return( Sc* nu^(alpha) * exp(1- (nu/breakFreq)) )#
+}
+Score <- FFAspec(CoreParam[1], CoreParam[2], CoreParam[3], freq)#
+Sjet  <- FFAspec(JetParam[1], JetParam[2], JetParam[3], freq)#
+#
+plot(freq, Score + Sjet, type='l', log='xy', xlim=c(50,500), ylim=c(0.15, 1.5), xlab='Frequency [GHz]', ylab='Flux Density [Jy]', main='NGC 1052 Continuum Spectrum')#
+points(ContDF, pch=20)#
+lines(freq, Score, type='l', col='blue') #
+lines(freq, SynchrotronBreakSpec(100, -1.1, 200, freq), type='l', col='red')
+Score <- FFAspec(CoreParam[1], CoreParam[2], CoreParam[3], freq)#
+Sjet  <- FFAspec(JetParam[1], JetParam[2], JetParam[3], freq)#
+#
+plot(freq, Score + Sjet, type='l', log='xy', xlim=c(50,500), ylim=c(0.15, 1.5), xlab='Frequency [GHz]', ylab='Flux Density [Jy]', main='NGC 1052 Continuum Spectrum')#
+points(ContDF, pch=20)#
+lines(freq, Score, type='l', col='blue') #
+lines(freq, SynchrotronBreakSpec(100, -1.1, 100, freq), type='l', col='red')
+Score <- FFAspec(CoreParam[1], CoreParam[2], CoreParam[3], freq)#
+Sjet  <- FFAspec(JetParam[1], JetParam[2], JetParam[3], freq)#
+#
+plot(freq, Score + Sjet, type='l', log='xy', xlim=c(50,500), ylim=c(0.15, 1.5), xlab='Frequency [GHz]', ylab='Flux Density [Jy]', main='NGC 1052 Continuum Spectrum')#
+points(ContDF, pch=20)#
+lines(freq, Score, type='l', col='blue') #
+lines(freq, SynchrotronBreakSpec(1, -0.5, 100, freq), type='l', col='red')
+Score <- FFAspec(CoreParam[1], CoreParam[2], CoreParam[3], freq)#
+Sjet  <- FFAspec(JetParam[1], JetParam[2], JetParam[3], freq)#
+#
+plot(freq, Score + Sjet, type='l', log='xy', xlim=c(50,500), ylim=c(0.15, 1.5), xlab='Frequency [GHz]', ylab='Flux Density [Jy]', main='NGC 1052 Continuum Spectrum')#
+points(ContDF, pch=20)#
+lines(freq, Score, type='l', col='blue') #
+lines(freq, SynchrotronBreakSpec(10, -0.5, 100, freq), type='l', col='red')
+Score <- FFAspec(CoreParam[1], CoreParam[2], CoreParam[3], freq)#
+Sjet  <- FFAspec(JetParam[1], JetParam[2], JetParam[3], freq)#
+#
+plot(freq, Score + Sjet, type='l', log='xy', xlim=c(50,500), ylim=c(0.15, 1.5), xlab='Frequency [GHz]', ylab='Flux Density [Jy]', main='NGC 1052 Continuum Spectrum')#
+points(ContDF, pch=20)#
+lines(freq, Score, type='l', col='blue') #
+lines(freq, SynchrotronBreakSpec(10, -0.5, 200, freq), type='l', col='red')
+Score <- FFAspec(CoreParam[1], CoreParam[2], CoreParam[3], freq)#
+Sjet  <- FFAspec(JetParam[1], JetParam[2], JetParam[3], freq)#
+#
+plot(freq, Score + Sjet, type='l', log='xy', xlim=c(50,500), ylim=c(0.15, 1.5), xlab='Frequency [GHz]', ylab='Flux Density [Jy]', main='NGC 1052 Continuum Spectrum')#
+points(ContDF, pch=20)#
+lines(freq, Score, type='l', col='blue') #
+lines(freq, SynchrotronBreakSpec(2, -0.5, 200, freq), type='l', col='red')
+Score <- FFAspec(CoreParam[1], CoreParam[2], CoreParam[3], freq)#
+Sjet  <- FFAspec(JetParam[1], JetParam[2], JetParam[3], freq)#
+#
+plot(freq, Score + Sjet, type='l', log='xy', xlim=c(50,500), ylim=c(0.15, 1.5), xlab='Frequency [GHz]', ylab='Flux Density [Jy]', main='NGC 1052 Continuum Spectrum')#
+points(ContDF, pch=20)#
+lines(freq, Score, type='l', col='blue') #
+lines(freq, SynchrotronBreakSpec(5, -0.5, 200, freq), type='l', col='red')
+SynchrotronBreakSpec <- function(Sc, alpha, breakFreq, nu){#
+	return( Sc* nu^(alpha) * exp(- nu/breakFreq) )#
+}
+Score <- FFAspec(CoreParam[1], CoreParam[2], CoreParam[3], freq)#
+Sjet  <- FFAspec(JetParam[1], JetParam[2], JetParam[3], freq)#
+#
+plot(freq, Score + Sjet, type='l', log='xy', xlim=c(50,500), ylim=c(0.15, 1.5), xlab='Frequency [GHz]', ylab='Flux Density [Jy]', main='NGC 1052 Continuum Spectrum')#
+points(ContDF, pch=20)#
+lines(freq, Score, type='l', col='blue') #
+lines(freq, SynchrotronBreakSpec(5, -0.5, 200, freq), type='l', col='red')
+Score <- FFAspec(CoreParam[1], CoreParam[2], CoreParam[3], freq)#
+Sjet  <- FFAspec(JetParam[1], JetParam[2], JetParam[3], freq)#
+#
+plot(freq, Score + Sjet, type='l', log='xy', xlim=c(50,500), ylim=c(0.15, 1.5), xlab='Frequency [GHz]', ylab='Flux Density [Jy]', main='NGC 1052 Continuum Spectrum')#
+points(ContDF, pch=20)#
+lines(freq, Score, type='l', col='blue') #
+lines(freq, SynchrotronBreakSpec(10, -0.5, 200, freq), type='l', col='red')
+Score <- FFAspec(CoreParam[1], CoreParam[2], CoreParam[3], freq)#
+Sjet  <- FFAspec(JetParam[1], JetParam[2], JetParam[3], freq)#
+#
+plot(freq, Score + Sjet, type='l', log='xy', xlim=c(50,500), ylim=c(0.15, 1.5), xlab='Frequency [GHz]', ylab='Flux Density [Jy]', main='NGC 1052 Continuum Spectrum')#
+points(ContDF, pch=20)#
+lines(freq, Score, type='l', col='blue') #
+lines(freq, SynchrotronBreakSpec(20, -0.5, 200, freq), type='l', col='red')
+Score <- FFAspec(CoreParam[1], CoreParam[2], CoreParam[3], freq)#
+Sjet  <- FFAspec(JetParam[1], JetParam[2], JetParam[3], freq)#
+#
+plot(freq, Score + Sjet, type='l', log='xy', xlim=c(50,500), ylim=c(0.15, 1.5), xlab='Frequency [GHz]', ylab='Flux Density [Jy]', main='NGC 1052 Continuum Spectrum')#
+points(ContDF, pch=20)#
+lines(freq, Score, type='l', col='blue') #
+lines(freq, SynchrotronBreakSpec(15, -0.5, 200, freq), type='l', col='red')
+Score <- FFAspec(CoreParam[1], CoreParam[2], CoreParam[3], freq)#
+Sjet  <- FFAspec(JetParam[1], JetParam[2], JetParam[3], freq)#
+#
+plot(freq, Score + Sjet, type='l', log='xy', xlim=c(50,500), ylim=c(0.15, 1.5), xlab='Frequency [GHz]', ylab='Flux Density [Jy]', main='NGC 1052 Continuum Spectrum')#
+points(ContDF, pch=20)#
+lines(freq, Score, type='l', col='blue') #
+lines(freq, SynchrotronBreakSpec(16, -0.5, 200, freq), type='l', col='red')
+Score <- FFAspec(CoreParam[1], CoreParam[2], CoreParam[3], freq)#
+Sjet  <- FFAspec(JetParam[1], JetParam[2], JetParam[3], freq)#
+#
+plot(freq, Score + Sjet, type='l', log='xy', xlim=c(50,500), ylim=c(0.15, 1.5), xlab='Frequency [GHz]', ylab='Flux Density [Jy]', main='NGC 1052 Continuum Spectrum')#
+points(ContDF, pch=20)#
+lines(freq, Score, type='l', col='blue') #
+lines(freq, SynchrotronBreakSpec(17, -0.5, 200, freq), type='l', col='red')
+Score <- FFAspec(CoreParam[1], CoreParam[2], CoreParam[3], freq)#
+Sjet  <- FFAspec(JetParam[1], JetParam[2], JetParam[3], freq)#
+#
+plot(freq, Score + Sjet, type='l', log='xy', xlim=c(50,500), ylim=c(0.15, 1.5), xlab='Frequency [GHz]', ylab='Flux Density [Jy]', main='NGC 1052 Continuum Spectrum')#
+points(ContDF, pch=20)#
+lines(freq, Score, type='l', col='blue') #
+lines(freq, SynchrotronBreakSpec(1, -0.0, 200, freq), type='l', col='red')
+Score <- FFAspec(CoreParam[1], CoreParam[2], CoreParam[3], freq)#
+Sjet  <- FFAspec(JetParam[1], JetParam[2], JetParam[3], freq)#
+#
+plot(freq, Score + Sjet, type='l', log='xy', xlim=c(50,500), ylim=c(0.15, 1.5), xlab='Frequency [GHz]', ylab='Flux Density [Jy]', main='NGC 1052 Continuum Spectrum')#
+points(ContDF, pch=20)#
+lines(freq, Score, type='l', col='blue') #
+lines(freq, SynchrotronBreakSpec(1, -0.0, 100, freq), type='l', col='red')
+Score <- FFAspec(CoreParam[1], CoreParam[2], CoreParam[3], freq)#
+Sjet  <- FFAspec(JetParam[1], JetParam[2], JetParam[3], freq)#
+#
+plot(freq, Score + Sjet, type='l', log='xy', xlim=c(50,500), ylim=c(0.15, 1.5), xlab='Frequency [GHz]', ylab='Flux Density [Jy]', main='NGC 1052 Continuum Spectrum')#
+points(ContDF, pch=20)#
+lines(freq, Score, type='l', col='blue') #
+lines(freq, SynchrotronBreakSpec(20, -0.0, 100, freq), type='l', col='red')
+Score <- FFAspec(CoreParam[1], CoreParam[2], CoreParam[3], freq)#
+Sjet  <- FFAspec(JetParam[1], JetParam[2], JetParam[3], freq)#
+#
+plot(freq, Score + Sjet, type='l', log='xy', xlim=c(50,500), ylim=c(0.15, 1.5), xlab='Frequency [GHz]', ylab='Flux Density [Jy]', main='NGC 1052 Continuum Spectrum')#
+points(ContDF, pch=20)#
+lines(freq, Score, type='l', col='blue') #
+lines(freq, SynchrotronBreakSpec(10, -0.0, 100, freq), type='l', col='red')
+Score <- FFAspec(CoreParam[1], CoreParam[2], CoreParam[3], freq)#
+Sjet  <- FFAspec(JetParam[1], JetParam[2], JetParam[3], freq)#
+#
+plot(freq, Score + Sjet, type='l', log='xy', xlim=c(50,500), ylim=c(0.15, 1.5), xlab='Frequency [GHz]', ylab='Flux Density [Jy]', main='NGC 1052 Continuum Spectrum')#
+points(ContDF, pch=20)#
+lines(freq, Score, type='l', col='blue')
+plot(freq, (1 - exp(-freq/100)), type='l')
+lines(freq, (exp(-freq/100) - 1), type='l', col='red')
+lines(freq, exp(-freq/100), type='l', col='red')
+lines(freq, exp(freq/100), type='l', col='red')
+lines(freq, 1-exp(freq/100), type='l', col='red')
+SynchrotronBreakSpec <- function(Sc, alpha, breakFreq, nu){#
+	return( Sc* ( nu^(alpha) * exp(- nu/breakFreq) + nu^(alpha - 2) * (1.0 - exp(- nu/breakFreq)) )#
+}
+SynchrotronBreakSpec <- function(Sc, alpha, breakFreq, nu){#
+	return( Sc* ( nu^(alpha) * exp(- nu/breakFreq) + nu^(alpha - 2) * (1.0 - exp(- nu/breakFreq))))#
+}
+Score <- FFAspec(CoreParam[1], CoreParam[2], CoreParam[3], freq)#
+Sjet  <- FFAspec(JetParam[1], JetParam[2], JetParam[3], freq)#
+#
+plot(freq, Score + Sjet, type='l', log='xy', xlim=c(50,500), ylim=c(0.15, 1.5), xlab='Frequency [GHz]', ylab='Flux Density [Jy]', main='NGC 1052 Continuum Spectrum')#
+points(ContDF, pch=20)#
+lines(freq, Score, type='l', col='blue') #
+lines(freq, SynchrotronBreakSpec(10, -0.0, 100, freq), type='l', col='red')
+lines(freq, SynchrotronBreakSpec(1, -1.0, 100, freq), type='l', col='red')
+SynchrotronBreakSpec(1, -1.0, 100, freq)
+lines(freq, SynchrotronBreakSpec(10, -1.0, 100, freq), type='l', col='red')
+SynchrotronBreakSpec(10, -1.0, 100, freq)
+SynchrotronBreakSpec(100, -1.0, 100, freq)
+lines(freq, SynchrotronBreakSpec(100, -1.0, 100, freq), type='l', col='red')
+lines(freq, SynchrotronBreakSpec(100, -1.0, 200, freq), type='l', col='red')
+lines(freq, SynchrotronBreakSpec(100, -1.0, 300, freq), type='l', col='red')
+lines(freq, SynchrotronBreakSpec(100, -1.0, 400, freq), type='l', col='red')
+lines(freq, SynchrotronBreakSpec(100, -1.0, 500, freq), type='l', col='red')
+lines(freq, SynchrotronBreakSpec(100, -0.9, 500, freq), type='l', col='red')
+lines(freq, SynchrotronBreakSpec(100, -0.9, 100, freq), type='l', col='red')
+lines(freq, SynchrotronBreakSpec(10, -0.8, 100, freq), type='l', col='red')
+lines(freq, SynchrotronBreakSpec(50, -0.8, 100, freq), type='l', col='red')
+lines(freq, SynchrotronBreakSpec(50, -0.5, 100, freq), type='l', col='red')
+lines(freq, SynchrotronBreakSpec(10, -0.5, 100, freq), type='l', col='red')
+lines(freq, SynchrotronBreakSpec(100, -0.5, 50, freq), type='l', col='red')
+lines(freq, SynchrotronBreakSpec(50, -0.5, 100, freq), type='l', col='red')
+lines(freq, SynchrotronBreakSpec(50, -0.5, 100, freq), type='l', col='green')
+lines(freq, SynchrotronBreakSpec(10, -0.5, 100, freq), type='l', col='green')
+lines(freq, SynchrotronBreakSpec(10, -0.5, 200, freq), type='l', col='green')
+SynchrotronBreakSpec <- function(Sc, alpha, breakFreq, nu){#
+	return( Sc* ( nu^(alpha) * exp(- nu/breakFreq) + nu^(alpha - 2.5) * (1.0 - exp(- nu/breakFreq))))#
+}
+lines(freq, SynchrotronBreakSpec(10, -0.5, 200, freq), type='l', col='green')
+lines(freq, SynchrotronBreakSpec(10, -0.5, 200, freq), type='l', col='blue')
+lines(freq, SynchrotronBreakSpec(15, -0.5, 200, freq), type='l', col='blue')
+lines(freq, SynchrotronBreakSpec(15, -0.4, 200, freq), type='l', col='blue')
+lines(freq, SynchrotronBreakSpec(10, -0.4, 200, freq), type='l', col='blue')
+SynchrotronBreakSpec <- function(Sc, alpha, breakFreq, nu){#
+	return( Sc* ( nu^(alpha) * exp(- nu/breakFreq) ))#
+	# return( Sc* ( nu^(alpha) * exp(- nu/breakFreq) + nu^(alpha - 2.5) * (1.0 - exp(- nu/breakFreq))))#
+}
+lines(freq, SynchrotronBreakSpec(10, -0.4, 200, freq), type='l', col='blue')
+SynchrotronBreakSpec(10, -0.4, 200, freq)
+lines(freq, SynchrotronBreakSpec(10, -0.4, 100, freq), type='l', col='blue')
+plot(freq, Score + Sjet, type='l', log='xy', xlim=c(50,500), ylim=c(0.15, 1.5), xlab='Frequency [GHz]', ylab='Flux Density [Jy]', main='NGC 1052 Continuum Spectrum')#
+points(ContDF, pch=20)#
+lines(freq, Score, type='l', col='blue')
+lines(freq, SynchrotronBreakSpec(10, -0.4, 100, freq), type='l', col='blue')
+lines(freq, SynchrotronBreakSpec(10, -0.3, 100, freq), type='l', col='blue')
+lines(freq, SynchrotronBreakSpec(10, -0., 100, freq), type='l', col='blue')
+lines(freq, SynchrotronBreakSpec(1, -0., 100, freq), type='l', col='blue')
+lines(freq, SynchrotronBreakSpec(1, 0.5., 100, freq), type='l', col='blue')
+lines(freq, SynchrotronBreakSpec(1, 0.5, 100, freq), type='l', col='blue')
+lines(freq, SynchrotronBreakSpec(0.1, 0.5, 100, freq), type='l', col='blue')
+lines(freq, SynchrotronBreakSpec(0.2, 0.5, 100, freq), type='l', col='blue')
+lines(freq, SynchrotronBreakSpec(0.3, 0.5, 100, freq), type='l', col='blue')
+lines(freq, SynchrotronBreakSpec(0.3, 0.5, 50, freq), type='l', col='blue')
+dev.off()
+FreqPoints <- c( 88.8,  86.9,  86.9,  85.0,  97.0,  98.7,  98.6, 100.4, 130.1, 128.2, 128.3, 126.5, 138.3, 140.1, 139.9, 141.7, 354.1, 356.0, 357.9, 351.0, 343.2, 344.2, 341.8, 338.0, 231.7, 213.1)#
+FluxPoints <- c(1.190, 1.205, 1.205, 1.221, 1.125, 1.112, 1.114, 1.100, 0.875, 0.883, 0.883, 0.891, 0.843, 0.836, 0.837, 0.831, 0.443, 0.445, 0.446, 0.441, 0.443, 0.443, 0.443, 0.444, 0.491, 0.492)#
+ContDF <- data.frame(freq=FreqPoints, flux=FluxPoints)#
+#
+fit <- nls(formula = flux ~ a* freq^(-0.25)* exp(-b* freq^(-2.1)) + c* freq^(-2.5)* exp(-d* freq^(-2.1)), data=ContDF, start=list(a=0.725, b=2.5e+04, c=1.9e+05, d=10000))#
+#
+freq <- 10^seq(1, 3, by=0.01)#
+CoreParam <- c(0.725, -0.1, 2.5e+04)#
+JetParam <- c(1.9e+05, -2.5, 10000) #
+#
+CoreParam <- c(coef(fit)['a'], -0.25, coef(fit)['b'])#
+JetParam <- c(coef(fit)['c'], -2.5, coef(fit)['d']) #
+#
+Score <- FFAspec(CoreParam[1], CoreParam[2], CoreParam[3], freq)#
+Sjet  <- FFAspec(JetParam[1], JetParam[2], JetParam[3], freq)#
+#
+plot(freq, Score + Sjet, type='l', log='xy', xlim=c(50,500), ylim=c(0.15, 1.5), xlab='Frequency [GHz]', ylab='Flux Density [Jy]', main='NGC 1052 Continuum Spectrum')#
+points(ContDF, pch=20)#
+lines(freq, Score, type='l', col='blue') #
+lines(freq, Sjet, type='l', col='red')
+source('~/Projects/NGC1052_SO_Absorption/Spec/FFAcontSpec.R', chdir = TRUE)
+fit <- nls(formula = flux ~ a* freq^(-0.25)* exp(-b* freq^(-2.1)) + c* freq^(-3)* exp(-d* freq^(-2.1)), data=ContDF, start=list(a=0.725, b=2.5e+04, c=1.9e+05, d=10000))
+summary(fit)
+CoreParam <- c(coef(fit)['a'], -0.25, coef(fit)['b'])#
+JetParam <- c(coef(fit)['c'], -2.5, coef(fit)['d']) #
+#
+Score <- FFAspec(CoreParam[1], CoreParam[2], CoreParam[3], freq)#
+Sjet  <- FFAspec(JetParam[1], JetParam[2], JetParam[3], freq)#
+#
+#pdf('ContSpec.pdf', width=7, height=7)#
+plot(freq, Score + Sjet, type='l', log='xy', xlim=c(50,500), ylim=c(0.15, 1.5), xlab='Frequency [GHz]', ylab='Flux Density [Jy]', main='NGC 1052 Continuum Spectrum')#
+points(ContDF, pch=20)#
+lines(freq, Score, type='l', col='blue') #
+lines(freq, Sjet, type='l', col='red')
+CoreParam <- c(coef(fit)['a'], -0.25, coef(fit)['b'])#
+JetParam <- c(coef(fit)['c'], -3, coef(fit)['d']) #
+#
+Score <- FFAspec(CoreParam[1], CoreParam[2], CoreParam[3], freq)#
+Sjet  <- FFAspec(JetParam[1], JetParam[2], JetParam[3], freq)#
+#
+#pdf('ContSpec.pdf', width=7, height=7)#
+plot(freq, Score + Sjet, type='l', log='xy', xlim=c(50,500), ylim=c(0.15, 1.5), xlab='Frequency [GHz]', ylab='Flux Density [Jy]', main='NGC 1052 Continuum Spectrum')#
+points(ContDF, pch=20)#
+lines(freq, Score, type='l', col='blue') #
+lines(freq, Sjet, type='l', col='red')
+summary(fit)
+fit <- nls(formula = flux ~ a* freq^(-0.2)* exp(-b* freq^(-2.1)) + c* freq^(-3)* exp(-d* freq^(-2.1)), data=ContDF, start=list(a=0.725, b=2.5e+04, c=2.3e+06, d=13000))
+summary(fit)
+CoreParam <- c(coef(fit)['a'], -0.2, coef(fit)['b'])#
+JetParam <- c(coef(fit)['c'], -3, coef(fit)['d']) #
+#
+Score <- FFAspec(CoreParam[1], CoreParam[2], CoreParam[3], freq)#
+Sjet  <- FFAspec(JetParam[1], JetParam[2], JetParam[3], freq)
+lines(freq, Score, type='l', col='blue') #
+lines(freq, Sjet, type='l', col='red')
+plot(freq, Score + Sjet, type='l', log='xy', xlim=c(50,500), ylim=c(0.15, 1.5), xlab='Frequency [GHz]', ylab='Flux Density [Jy]', main='NGC 1052 Continuum Spectrum')#
+points(ContDF, pch=20)#
+lines(freq, Score, type='l', col='blue') #
+lines(freq, Sjet, type='l', col='red')
+source('~/Projects/NGC1052_SO_Absorption/Spec/FFAcontSpec.R', chdir = TRUE)
+dev.off()
+source('~/Projects/NGC1052_SO_Absorption/Spec/FFAcontSpec.R', chdir = TRUE)
+summary(fit)
+summary(fit)['Std. Error']
+summary(fit)$Parameters
+summary(fit)[[1]]
+summary(fit)[[2]]
+summary(fit)[[3]]
+summary(fit)[[4]]
+summary(fit)[[5]]
+summary(fit)[[6]]
+summary(fit)[[7]]
+summary(fit)[[8]]
+summary(fit)
+coef(fi)
+coef(fit)
+summary(fit)
+summary(fit)['coef']
+summary(fit)['Estimate']
+summary(fit)[['Std.Error']]
+summary(fit)$sigma
+summary(fit)$a
+summary(fit)['a']
+summary(fit)$Coefficients
+summary(fit)$coefficients
+summary(fit)$coefficients['Std. Error']
+summary(fit)$coefficients['a']
+summary(fit)$coefficients[[1]]
+summary(fit)$coefficients[[2]]
+summary(fit)$coefficients[[1,2]]
+summary(fit)$coefficients[[1,1]]
+source('~/Projects/NGC1052_SO_Absorption/Spec/plotSpec.R', chdir = TRUE)
+source('~/Projects/NGC1052_SO_Absorption/Spec/BoltzmannDiagramSO.R', chdir = TRUE)
+setwd('~/Library/Mobile Documents/com~apple~CloudDocs/Projects/CSV-3664/HH114')
+source('~/Library/Mobile Documents/com~apple~CloudDocs/Projects/CSV-3664/Script/readSpecTextHH114.R')
+source('~/Library/Mobile Documents/com~apple~CloudDocs/Projects/CSV-3664/Script/readSpecTextHH114.R')
+source('~/Library/Mobile Documents/com~apple~CloudDocs/Projects/CSV-3664/Script/readSpecTextHH114.R')
+source('~/Library/Mobile Documents/com~apple~CloudDocs/Projects/CSV-3664/Script/readSpecTextHH114.R')
+source('~/Library/Mobile Documents/com~apple~CloudDocs/Projects/CSV-3664/Script/readSpecTextHH114.R')
+source('~/Library/Mobile Documents/com~apple~CloudDocs/Projects/CSV-3664/Script/readSpecTextHH114.R')
+source('~/Library/Mobile Documents/com~apple~CloudDocs/Projects/CSV-3664/Script/readSpecTextHH114.R')
+38.53/35.66
+24.27/23.74
+22.13/23.35
+23.74/24.27
+24.89/24.87
+24.89/24.8722.06/23.00
+22.06/23.00
+23.58/23.24
+pi*7^2/4*0.7
+2*1380 * 80/27
